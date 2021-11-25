@@ -1,0 +1,29 @@
+.sign-in-form {
+    width: 30%;
+}
+
+.btn-primary {
+    width: 100%;
+    margin-top: 2%;
+}
+
+.sign-in-div {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+}
+
+.sign-in-div > * {
+    margin: auto;
+}
+
+.nav-div {
+    margin: auto;
+    width: min-content;
+    white-space: nowrap;
+}
+
+.copyright-text {
+    color: grey;
+}

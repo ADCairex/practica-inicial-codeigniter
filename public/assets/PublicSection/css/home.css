@@ -1,0 +1,25 @@
+.festival-group-card {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.festival-group-card > h2 {
+    width: min-content;
+    margin: 1rem;
+}
+
+.festival-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.festival-card {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.festival-card > * {
+    width: 100%;
+}

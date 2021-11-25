@@ -8,6 +8,10 @@ class HomeController extends BaseController
 {
     public function index()
     {
-        return view('PublicSection/home');
+        $data = array (
+            'title' => 'Home',
+        );
+
+        return view('PublicSection/home', $data);
     }
 }

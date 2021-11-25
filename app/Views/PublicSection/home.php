@@ -46,6 +46,18 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra molestie gravida.</p>
                             <button class='btn btn-primary'>Go somewhere</button>
                         </div>
+                        <div class="festival-card">
+                            <img src="<?= base_url('assets/PublicSection/images/indieFestival.jpg') ?>" width="300" height="200">
+                            <h3>Card title</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra molestie gravida.</p>
+                            <button class='btn btn-primary'>Go somewhere</button>
+                        </div>
+                        <div class="festival-card">
+                            <img src="<?= base_url('assets/PublicSection/images/indieFestival.jpg') ?>" width="300" height="200">
+                            <h3>Card title</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra molestie gravida.</p>
+                            <button class='btn btn-primary'>Go somewhere</button>
+                        </div>
                     </div>
                 </div>
                 <div class="festival-group-card">

@@ -28,9 +28,9 @@ class HomeController extends BaseController
         $fest = new Festivals($festData);
 
         $festModel = new FestivalsModel();
-        $festModel->save($fest);
+        //$festModel->save($fest);
 
-        echo dd($festModel->findFestivalsByCategory(1));
+        echo dd($festModel->findFestivals(1));
 
         //return view('Administration/home', $data);
     }

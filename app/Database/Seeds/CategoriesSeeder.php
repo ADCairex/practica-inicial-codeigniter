@@ -20,11 +20,11 @@ class CategoriesSeeder extends Seeder
         $roles = [
             [
                 'name'   => $faker->name,
-                'created_at' => new Time('now', 'Europe/Madrid', 'en_US'),
+                'created_at' => new Time('now', 'Europe/Madrid', 'es_ES'),
             ],
             [
                 'name'   => $faker->name,
-                'created_at' => new Time('now', 'Europe/Madrid', 'en_US'),
+                'created_at' => new Time('now', 'Europe/Madrid', 'es_ES'),
             ],
         ];
 

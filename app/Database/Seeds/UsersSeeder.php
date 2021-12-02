@@ -25,7 +25,7 @@ class UsersSeeder extends Seeder
                 'name'       => $faker->name,
                 'surname'    => $faker->name,
                 'role_id'    => 1,
-                'created_at' => new Time('now', 'Europe/Madrid', 'en_US'),
+                'created_at' => new Time('now', 'Europe/Madrid', 'es_ES'),
             ],
             [
                 'username'   => $faker->username,
@@ -34,7 +34,7 @@ class UsersSeeder extends Seeder
                 'name'       => $faker->name,
                 'surname'    => $faker->name,
                 'role_id'    => 2,
-                'created_at' => new Time('now', 'Europe/Madrid', 'en_US'),
+                'created_at' => new Time('now', 'Europe/Madrid', 'es_ES'),
             ],
         ];
 

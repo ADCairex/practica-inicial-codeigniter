@@ -26,7 +26,7 @@ class FestivalsSeeder extends Seeder
                 'address'    => $faker->address,
                 'image_url'    => 'an url',
                 'category_id' => 1,
-                'created_at' => new Time('now', 'Europe/Madrid', 'en_US'),
+                'created_at' => new Time('now', 'Europe/Madrid', 'es_ES'),
             ],
             [
                 'name'   => $faker->name,
@@ -36,7 +36,7 @@ class FestivalsSeeder extends Seeder
                 'address'    => $faker->address,
                 'image_url'    => 'an url',
                 'category_id' => 2,
-                'created_at' => new Time('now', 'Europe/Madrid', 'en_US'),
+                'created_at' => new Time('now', 'Europe/Madrid', 'es_ES'),
             ],
         ];
 

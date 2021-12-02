@@ -3,6 +3,9 @@
 namespace App\Controllers\Administration;
 
 use App\Controllers\BaseController;
+use App\Entities\Festivals;
+use App\Models\FestivalsModel;
+use CodeIgniter\I18n\Time;
 
 class HomeController extends BaseController
 {
@@ -12,6 +15,23 @@ class HomeController extends BaseController
             'title' => 'Home admin',
         );
 
-        return view('Administration/home', $data);
+        $festData = array (
+            'name' => 'Una categoria nueva',
+            'email' => 'Un email',
+            'date' => new Time(),
+            'prices' => 10,
+            'address' => 'Una direccion',
+            'image_url' => 'Una url',
+            'category_id' => 1,
+        );
+
+        $fest = new Festivals($festData);
+
+        $festModel = new FestivalsModel();
+        $festModel->save($fest);
+
+        echo dd($festModel->findFestivalsByCategory(1));
+
+        //return view('Administration/home', $data);
     }
 }

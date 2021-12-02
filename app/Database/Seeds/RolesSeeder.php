@@ -17,11 +17,11 @@ class RolesSeeder extends Seeder
         $roles = [
             [
                 'name'       => 'admin',
-                'created_at' => new Time('now', 'Europe/Madrid', 'en_US'),
+                'created_at' => new Time('now', 'Europe/Madrid', 'es_ES'),
             ],
             [
                 'name'       => 'app_client',
-                'created_at' => new Time('now', 'Europe/Madrid', 'en_US'),
+                'created_at' => new Time('now', 'Europe/Madrid', 'es_ES'),
             ]
         ];
 

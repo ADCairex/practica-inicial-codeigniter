@@ -30,11 +30,15 @@ class Users extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '250',
             ],
+            'name' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '250',
+            ],
             'surname' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '250',
             ],
-            'rol_id' => [
+            'role_id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => true,
@@ -57,7 +61,7 @@ class Users extends Migration
         $this->forge->addPrimaryKey('id');
         $this->forge->addUniqueKey('username');
         $this->forge->addUniqueKey('email');
-        $this->forge->addForeignKey('rol_id','roles','id','CASCADE','SET NULL');
+        $this->forge->addForeignKey('role_id','roles','id','CASCADE','SET NULL');
 
         $this->forge->createTable('users');
 

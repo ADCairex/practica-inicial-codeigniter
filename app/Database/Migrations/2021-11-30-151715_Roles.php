@@ -14,6 +14,7 @@ class Roles extends Migration
                 'constraint'     => 5,
                 'auto_increment' => true,
                 'unsigned'       => true,
+                'null'           => true,
             ],
             'name' => [
                 'type' => 'VARCHAR',

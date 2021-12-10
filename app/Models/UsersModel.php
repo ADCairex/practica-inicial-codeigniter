@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Entities\Users;
 use CodeIgniter\Model;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class UsersModel extends Model
 {
@@ -47,4 +48,12 @@ class UsersModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function checkUserExist($user) {
+        $result = $this->where(['username' => $user])
+                       ->orWhere(['email' => $user])
+                       ->first();
+        
+        return $result;        
+    }
 }

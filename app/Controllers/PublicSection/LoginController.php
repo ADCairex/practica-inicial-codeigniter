@@ -3,10 +3,13 @@
 namespace App\Controllers\PublicSection;
 
 use App\Controllers\BaseController;
+use App\Libraries\UtilLibrary;
 use App\Models\UsersModel;
+
 
 class LoginController extends BaseController
 {
+
     public function index()
     {
         $data = array (
@@ -18,6 +21,7 @@ class LoginController extends BaseController
 
     public function checkLogin()
     {
+        $util = new UtilLibrary();
         $request = $this->request;
 
         $user = $request->getVar('user-email');
@@ -25,22 +29,13 @@ class LoginController extends BaseController
 
         $userModel = new UsersModel();
 
-        $response = array(
-            "status"=>'',
-            "message"=>'',
-            "data"=>''
-        );
 
         $userInfo = $userModel->checkUserExist($user);
 
         if ($userInfo != null) {
-            $response['status'] = 'OK';
-            $response['message'] = 'User found';
-            return json_encode($response);
+            return $util->getResponse('OK', 'Login correcto');
         } else {
-            $response['status'] = 'KO';
-            $response['message'] = 'User or pass not found';
-            return json_encode($response);
+            return $util->getResponse('Ko', 'Login incorrecto');
         }
     }
 }

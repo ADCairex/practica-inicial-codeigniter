@@ -49,11 +49,11 @@ class UsersModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function checkUserExist($user) {
+    public function getUserData($user) {
         $result = $this->where(['username' => $user])
                        ->orWhere(['email' => $user])
                        ->first();
         
-        return $result;        
+        return $result;
     }
 }

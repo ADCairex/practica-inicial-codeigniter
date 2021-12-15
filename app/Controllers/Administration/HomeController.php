@@ -14,7 +14,7 @@ class HomeController extends BaseController
         $data = array (
             'title' => 'Home admin',
         );
-
+/* 
         $festData = array (
             'name' => 'Una categoria nueva',
             'email' => 'Un email',
@@ -30,8 +30,8 @@ class HomeController extends BaseController
         $festModel = new FestivalsModel();
         //$festModel->save($fest);
 
-        echo dd($festModel->findFestivals(1));
+        //echo dd($festModel->findFestivals(1)); */
 
-        //return view('Administration/home', $data);
+        return view('Administration/home', $data);
     }
 }

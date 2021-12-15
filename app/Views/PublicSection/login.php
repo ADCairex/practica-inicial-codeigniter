@@ -1,3 +1,7 @@
+<?php
+    use Config\UserProfiles 
+?>
+
 <?= $this->extend('PublicSection/base_layout') ?>
 
 <?= $this->section('css') ?>
@@ -43,20 +47,23 @@
                         contentType: false,
                         async: true,
                         timeout: 10000,
+                        dataType: 'json',
                         beforeSend: (xhr) => {},
                         success: (response) => {
 
                             $(this).trigger('reset');
-
-                            alert('La peticion ha sido enviada correctamente');
+                            
+                            if (response.data.role == '<?= UserProfiles::ADMIN_ROLE ?>') {
+                                window.location.replace('<?= route_to('home_admin') ?>');
+                            } else if (response.data.role == '<?= UserProfiles::APP_CLIENT_ROLE ?>') {
+                                window.location.replace('<?= route_to('home_public') ?>');
+                            }
+                            
                         },
                         error: (xhr, status, error) => {
                             alert('Se ha producido un error');
                         },
-                        complete: (response) => {
-                            console.log(response);
-                        }
-                });
+                })
             });
         });        
 

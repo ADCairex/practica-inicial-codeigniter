@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Entities\Roles;
 use CodeIgniter\Model;
+use Config\UserProfiles;
 
 class RolesModel extends Model
 {
@@ -41,4 +42,15 @@ class RolesModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function userIsAdmin($user) {
+        $result = $this->where(['id' => $user->role_id])
+                       ->first();
+        
+        if ($result->name == UserProfiles::ADMIN_ROLE) {
+            return true;
+        }
+
+        return false;        
+    }
 }

@@ -2,10 +2,14 @@
 
 namespace Config;
 
+use App\Filters\LoginAuth;
+use App\Filters\PrivateAuth;
+use App\Filters\PublicAuth;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
+use Psr\Log\LogLevel;
 
 class Filters extends BaseConfig
 {
@@ -16,9 +20,12 @@ class Filters extends BaseConfig
      * @var array
      */
     public $aliases = [
-        'csrf'     => CSRF::class,
-        'toolbar'  => DebugToolbar::class,
-        'honeypot' => Honeypot::class,
+        'csrf'         => CSRF::class,
+        'toolbar'      => DebugToolbar::class,
+        'honeypot'     => Honeypot::class,
+        'login_auth'   => LoginAuth::class,
+        'public_auth'  => PublicAuth::class,
+        'private_auth' => PrivateAuth::class,
     ];
 
     /**

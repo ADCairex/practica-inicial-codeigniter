@@ -31,6 +31,9 @@ if (!defined('ADMIN_NAMESPACE')) {
 if (!defined('PUBLICSECTION_NAMESPACE')) {
     define('PUBLICSECTION_NAMESPACE', 'App\Controllers\PublicSection');
 }
+if (!defined('COMMAND_NAMESPACE')) {
+    define('COMMAND_NAMESPACE', 'App\Controllers\Command');
+}
 
 /*
  * --------------------------------------------------------------------
@@ -42,6 +45,8 @@ if (!defined('PUBLICSECTION_NAMESPACE')) {
 // route since we don't have to scan directories.
 //$routes->get('/', 'LoginController::index',['as' => 'login', 'filter' => 'login_auth', 'namespace' => PUBLICSECTION_NAMESPACE]);
 
+//-------- Normal routes -----------------------
+
 $routes->group('', function ($routes) {
     $routes->get('/', 'LoginController::index', ['as' => 'login', 'filter' => 'login_auth', 'namespace' => PUBLICSECTION_NAMESPACE]);
     $routes->get('home', 'HomeController::index', ['as' => 'home_public', 'filter' => 'public_auth', 'namespace' => PUBLICSECTION_NAMESPACE]);
@@ -52,6 +57,18 @@ $routes->group('admin', function ($routes) {
 });
 
 $routes->post('/checkLogin', 'LoginController::checkLogin', ['as' => 'check_login', 'namespace' => PUBLICSECTION_NAMESPACE]);
+
+//----------------------------------------------
+
+//------- Command routes -----------------------
+
+$routes->group('commands', function ($routes) {
+    $routes->cli('pokemon', 'CommandController::commandPokemon', ['namespace' => COMMAND_NAMESPACE]);
+    $routes->cli('feedVillena', 'CommandController::commandFeedVillena', ['namespace' => COMMAND_NAMESPACE]);
+});
+
+//----------------------------------------------
+
 
 /*
  * --------------------------------------------------------------------

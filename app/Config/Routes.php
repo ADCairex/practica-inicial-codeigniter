@@ -28,11 +28,14 @@ $routes->setAutoRoute(false);
 if (!defined('ADMIN_NAMESPACE')) {
     define('ADMIN_NAMESPACE', 'App\Controllers\Administration');
 }
-if (!defined('PUBLICSECTION_NAMESPACE')) {
-    define('PUBLICSECTION_NAMESPACE', 'App\Controllers\PublicSection');
+if (!defined('PUBLIC_SECTION_NAMESPACE')) {
+    define('PUBLIC_SECTION_NAMESPACE', 'App\Controllers\PublicSection');
 }
 if (!defined('COMMAND_NAMESPACE')) {
     define('COMMAND_NAMESPACE', 'App\Controllers\Command');
+}
+if (!defined('API_REST_NAMESPACE')) {
+    define('API_REST_NAMESPACE', 'App\Controllers\Rest');
 }
 
 /*
@@ -45,29 +48,41 @@ if (!defined('COMMAND_NAMESPACE')) {
 // route since we don't have to scan directories.
 //$routes->get('/', 'LoginController::index',['as' => 'login', 'filter' => 'login_auth', 'namespace' => PUBLICSECTION_NAMESPACE]);
 
-//-------- Normal routes -----------------------
+//-------- Normal routes ------------------------
 
 $routes->group('', function ($routes) {
-    $routes->get('/', 'LoginController::index', ['as' => 'login', 'filter' => 'login_auth', 'namespace' => PUBLICSECTION_NAMESPACE]);
-    $routes->get('home', 'HomeController::index', ['as' => 'home_public', 'filter' => 'public_auth', 'namespace' => PUBLICSECTION_NAMESPACE]);
+    $routes->get('/', 'LoginController::index', ['as' => 'login', 'filter' => 'login_auth', 'namespace' => PUBLIC_SECTION_NAMESPACE]);
+    $routes->get('home', 'HomeController::index', ['as' => 'home_public', 'filter' => 'public_auth', 'namespace' => PUBLIC_SECTION_NAMESPACE]);
 });
 
 $routes->group('admin', function ($routes) {
     $routes->get('home', 'HomeController::index', ['as' => 'home_admin', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
 });
 
-$routes->post('/checkLogin', 'LoginController::checkLogin', ['as' => 'check_login', 'namespace' => PUBLICSECTION_NAMESPACE]);
+$routes->post('/checkLogin', 'LoginController::checkLogin', ['as' => 'check_login', 'namespace' => PUBLIC_SECTION_NAMESPACE]);
 
-//----------------------------------------------
+//-----------------------------------------------
 
-//------- Command routes -----------------------
+//------- Command routes ------------------------
 
 $routes->group('commands', function ($routes) {
     $routes->cli('pokemon', 'CommandController::commandPokemon', ['namespace' => COMMAND_NAMESPACE]);
     $routes->cli('feedVillena', 'CommandController::commandFeedVillena', ['namespace' => COMMAND_NAMESPACE]);
 });
 
-//----------------------------------------------
+//-----------------------------------------------
+
+//------- Api Rest routes -----------------------
+
+$routes->group('rest', function ($routes) {
+    $routes->get('categories', 'CommandController::getCategories', ['namespace' => API_REST_NAMESPACE]);
+    $routes->get('categories/:id', 'CommandController::getCategory', ['namespace' => API_REST_NAMESPACE]);
+    $routes->delete('categories', 'CommandController::deleteCategory', ['namespace' => API_REST_NAMESPACE]);
+    $routes->post('categories', 'CommandController::newCategory', ['namespace' => API_REST_NAMESPACE]);
+    $routes->post('categories/edit', 'CommandController::editCategory', ['namespace' => API_REST_NAMESPACE]);
+});
+
+//-----------------------------------------------
 
 
 /*
@@ -76,9 +91,7 @@ $routes->group('commands', function ($routes) {
  * --------------------------------------------------------------------
  *
  * There will often be times that you need additional routing and you
- * need it to be able to override any defaults in this file. Environment
- * based routes is one such time. require() additional route files here
- * to make that happen.
+ * need it to be able to override any defaults in this file. EnvironmentPUBLI_CSECTION_NAMESPACE
  *
  * You will have access to the $routes object within that file without
  * needing to reload it.

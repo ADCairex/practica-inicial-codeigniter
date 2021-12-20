@@ -75,11 +75,10 @@ $routes->group('commands', function ($routes) {
 //------- Api Rest routes -----------------------
 
 $routes->group('rest', function ($routes) {
-    $routes->get('categories', 'CommandController::getCategories', ['namespace' => API_REST_NAMESPACE]);
-    $routes->get('categories/:id', 'CommandController::getCategory', ['namespace' => API_REST_NAMESPACE]);
-    $routes->delete('categories', 'CommandController::deleteCategory', ['namespace' => API_REST_NAMESPACE]);
-    $routes->post('categories', 'CommandController::newCategory', ['namespace' => API_REST_NAMESPACE]);
-    $routes->post('categories/edit', 'CommandController::editCategory', ['namespace' => API_REST_NAMESPACE]);
+    $routes->get('category/(:any)', 'CategoriesController::getCategory/$1', ['namespace' => API_REST_NAMESPACE]);
+    $routes->get('category', 'CategoriesController::getCategory', ['namespace' => API_REST_NAMESPACE]);
+    $routes->delete('category', 'CategoriesController::deleteCategory', ['namespace' => API_REST_NAMESPACE]);
+    $routes->post('category', 'CategoriesController::saveCategory', ['namespace' => API_REST_NAMESPACE]);
 });
 
 //-----------------------------------------------

@@ -57,6 +57,11 @@ $routes->group('', function ($routes) {
 
 $routes->group('admin', function ($routes) {
     $routes->get('home', 'HomeController::index', ['as' => 'home_admin', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
+    $routes->get('festivals', 'FestivalsController::index', ['as' => 'festival_admin', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
+    $routes->get('categories', 'CategoriesController::index', ['as' => 'categories_admin', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
+    $routes->get('users', 'UsersController::index', ['as' => 'users_admin', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
+    $routes->get('roles', 'RolesController::index', ['as' => 'roles_admin', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
+    $routes->get('config', 'ConfigController::index', ['as' => 'config_admin', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
 });
 
 $routes->post('/checkLogin', 'LoginController::checkLogin', ['as' => 'check_login', 'namespace' => PUBLIC_SECTION_NAMESPACE]);

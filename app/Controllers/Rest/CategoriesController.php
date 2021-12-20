@@ -65,7 +65,7 @@ class CategoriesController extends ResourceController
             if(isset($body->id)) {
                 //The id exist and this part is for edit the category
                 $category = $catModel->where(['id' => $body->id])
-                                    ->first();
+                                     ->first();
 
                 if ($category) {
                     $catModel->save($body);

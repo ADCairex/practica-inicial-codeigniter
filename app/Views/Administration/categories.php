@@ -21,6 +21,6 @@
     <!--Container Main start-->
     <div class="height-100 bg-light">
         <h4><?= $title ?></h4>
-        <p>Esta es la pagina principal</p>
+        <p>Esta es la pagina de las categorias</p>
     </div> 
 <?= $this->endSection() ?>

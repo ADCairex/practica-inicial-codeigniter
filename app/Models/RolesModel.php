@@ -51,6 +51,6 @@ class RolesModel extends Model
             return true;
         }
 
-        return false;        
+        return false;
     }
 }

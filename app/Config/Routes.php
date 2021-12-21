@@ -64,6 +64,14 @@ $routes->group('admin', function ($routes) {
     $routes->get('config', 'ConfigController::index', ['as' => 'config_admin', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
 });
 
+//----------- DataTable routes ------------------
+$routes->post('festivals_data', 'FestivalsController::getFestivalsData', ['as' => 'festivals_data', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
+$routes->post('roles_data', 'RolesController::getRolesData', ['as' => 'roles_data', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
+$routes->post('categories_data', 'CategoriesController::getCategoriesData', ['as' => 'categories_data', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
+$routes->post('users_data', 'UsersController::getUsersData', ['as' => 'users_data', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
+//-----------------------------------------------
+
+
 $routes->post('/checkLogin', 'LoginController::checkLogin', ['as' => 'check_login', 'namespace' => PUBLIC_SECTION_NAMESPACE]);
 
 //-----------------------------------------------

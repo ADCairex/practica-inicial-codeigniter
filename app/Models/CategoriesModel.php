@@ -51,4 +51,9 @@ class CategoriesModel extends Model
         return $this->where(['id' => $id])
                     ->first();
     }
+
+    public function findCategoriesDatatable($limitStart, $limitLenght) {
+        return $this->limit($limitLenght, $limitStart)
+                    ->find();
+    }
 }

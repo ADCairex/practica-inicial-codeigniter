@@ -39,7 +39,7 @@
                 {
                     "targets": 4,
                     "render": function (data, type, row, meta) {
-                        return '<button class="btn"><i class="fa fa-trash"></i></button> <button class="btn"><i class="fa fa-edit"></i></button>';
+                        return '<button class="btn deleteBtn"><i class="fa fa-trash"></i></button> <button class="btn editBtn"><i class="fa fa-edit"></i></button>';
                     }
                 }
             ]
@@ -66,7 +66,41 @@
                     }
                 }
             })
+            $('#festivals_datatable tbody').on('click', '.deleteBtn', function () {
+
+                var data = festivalsDatatable.row($(this).parents('tr')).data();
+                console.log(data.id);
+
+                let json_data = {
+                    "id": data.id
+                };
+
+                $.ajax({
+                    url: "<?= route_to('delete_festival') ?>",
+                        type: 'DELETE',
+                        data: JSON.stringify(json_data),
+                        processData: false,
+                        contentType: false,
+                        async: true,
+                        timeout: 10000,
+                        dataType: 'json',
+                        beforeSend: (xhr) => {},
+                        success: (response) => {
+                            if (response.status == 'OK') {
+                                $("#festivals_datatable").DataTable().ajax.reload(null, false);
+                            } else {
+                                alert('Se ha producido un error');
+                            }
+                        },
+                        error: (xhr, status, error) => {
+                            alert('Se ha producido un error');
+                        },
+                })
+
+            });
         });
+
+        
 
     </script>
 <?= $this->endSection() ?>

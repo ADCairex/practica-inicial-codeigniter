@@ -71,8 +71,13 @@ $routes->post('categories_data', 'CategoriesController::getCategoriesData', ['as
 $routes->post('users_data', 'UsersController::getUsersData', ['as' => 'users_data', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
 //-----------------------------------------------
 
+//------------ CRUD admin -----------------------
+$routes->delete('delete_festival', 'FestivalsController::deleteFestival', ['as' => 'delete_festival', 'namespace' => ADMIN_NAMESPACE]);
+//-----------------------------------------------
 
+//------------ Check Login ----------------------
 $routes->post('/checkLogin', 'LoginController::checkLogin', ['as' => 'check_login', 'namespace' => PUBLIC_SECTION_NAMESPACE]);
+//-----------------------------------------------
 
 //-----------------------------------------------
 

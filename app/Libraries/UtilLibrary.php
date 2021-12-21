@@ -2,8 +2,6 @@
 
 namespace App\Libraries;
 
-use App\Models\RolesModel;
-
 class UtilLibrary {
     
     public function getResponse($status='', $message='', $data='') {
@@ -15,11 +13,4 @@ class UtilLibrary {
 
         return json_encode($response);
     }
-
-    public function checkUserAdmin($user) {
-        $rolesModel = new RolesModel();
-
-
-    }
-
 }

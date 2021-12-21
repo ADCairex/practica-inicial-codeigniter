@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Entities\Festivals;
 use CodeIgniter\Model;
+use Exception;
 
 class FestivalsModel extends Model
 {
@@ -66,5 +67,15 @@ class FestivalsModel extends Model
     public function findFestivalsDatatable($limitStart, $limitLenght) {
         return $this->limit($limitLenght, $limitStart)
                     ->find();
+    }
+
+    public function deleteFestival($id) {
+        try {
+            $this->where('id', $id)
+                 ->delete();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 }

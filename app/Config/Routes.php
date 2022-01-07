@@ -69,10 +69,14 @@ $routes->get('festivals/view/edit/(:any)', 'FestivalsController::viewEditFestiva
 
 $routes->get('categories/view/edit', 'CategoriesController::viewEditCategory', ['as' => 'categories_view_edit', 'namespace' => ADMIN_NAMESPACE]);
 $routes->get('categories/view/edit/(:any)', 'CategoriesController::viewEditCategory/$1', ['namespace' => ADMIN_NAMESPACE]);
+
+$routes->get('users/view/edit', 'UsersController::viewEditUser', ['as' => 'users_view_edit', 'namespace' => ADMIN_NAMESPACE]);
+$routes->get('users/view/edit/(:any)', 'UsersController::viewEditUser/$1', ['namespace' => ADMIN_NAMESPACE]);
 //-----------------------------------------------
 //------------- Save forms ----------------------
 $routes->post('festivals', 'FestivalsController::saveFestival', ['as' => 'save_festival', 'namespace' => ADMIN_NAMESPACE]);
 $routes->post('categories', 'CategoriesController::saveCategory', ['as' => 'save_category', 'namespace' => ADMIN_NAMESPACE]);
+$routes->post('users', 'UsersController::saveUser', ['as' => 'save_user', 'namespace' => ADMIN_NAMESPACE]);
 //-----------------------------------------------
 //----------- DataTable routes ------------------
 $routes->post('festivals_data', 'FestivalsController::getFestivalsData', ['as' => 'festivals_data', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
@@ -84,6 +88,7 @@ $routes->post('users_data', 'UsersController::getUsersData', ['as' => 'users_dat
 //------------ CRUD admin -----------------------
 $routes->delete('delete_festival', 'FestivalsController::deleteFestival', ['as' => 'delete_festival', 'namespace' => ADMIN_NAMESPACE]);
 $routes->delete('delete_category', 'CategoriesController::deleteCategory', ['as' => 'delete_category', 'namespace' => ADMIN_NAMESPACE]);
+$routes->delete('delete_user', 'UsersController::deleteUser', ['as' => 'delete_user', 'namespace' => ADMIN_NAMESPACE]);
 //-----------------------------------------------
 
 //------------ Check Login ----------------------

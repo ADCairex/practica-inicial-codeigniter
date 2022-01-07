@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Entities\Users;
 use CodeIgniter\Model;
+use Exception;
 use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class UsersModel extends Model
@@ -60,5 +61,15 @@ class UsersModel extends Model
     public function findUsersDatatable($limitStart, $limitLenght) {
         return $this->limit($limitLenght, $limitStart)
                     ->find();
+    }
+
+    public function deleteUser($id) {
+        try {
+            $this->where('id', $id)
+                 ->delete();
+            return true;
+        } catch (Exception) {
+            return false;
+        }
     }
 }

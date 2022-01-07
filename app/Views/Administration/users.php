@@ -51,12 +51,12 @@
                 {
                     "targets": 6,
                     "render": function (data, type, row, meta) {
-                        return '<button class="btn"><i class="fa fa-trash"></i></button> <button class="btn"><i class="fa fa-edit"></i></button>';
+                        return '<button class="btn deleteBtn"><i class="fa fa-trash"></i></button> <button class="btn editBtn"><i class="fa fa-edit"></i></button>';
                     }
                 }
             ]
 
-            let festivalsDatatable = $('#users_datatable').DataTable({
+            let usersDatatable = $('#users_datatable').DataTable({
                 "processing": true, //Para mostrar el loading
                 "responsive": true,
                 "serverSide": true, //Activar Ajax
@@ -80,6 +80,50 @@
             })
         });
 
+        $('#users_datatable tbody').on('click', '.deleteBtn', function () {
+
+            var data = usersDatatable.row($(this).parents('tr')).data();
+            console.log(data.id);
+
+            let json_data = {
+                "id": data.id
+            };
+
+            $.ajax({
+                url: "<?= route_to('delete_user') ?>",
+                    type: 'DELETE',
+                    data: JSON.stringify(json_data),
+                    processData: false,
+                    contentType: false,
+                    async: true,
+                    timeout: 10000,
+                    dataType: 'json',
+                    beforeSend: (xhr) => {},
+                    success: (response) => {
+                        if (response.status == 'OK') {
+                            $("#users_datatable").DataTable().ajax.reload(null, false);
+                        } else {
+                            alert('Se ha producido un error');
+                        }
+                    },
+                    error: (xhr, status, error) => {
+                        alert('Se ha producido un error');
+                    },
+            });
+
+            //New User
+            $('.new-user-btn').click(function() {
+                window.location.href= "<?= route_to('festivals_view_edit')?>";
+            });
+
+            //Edit User
+            $('#users_datatable tbody').on('click', '.editBtn', function () {
+                alert('x');
+                var data = usersDatatable.row($(this).parents('tr')).data();
+
+                window.location.href = "<?= route_to('users_view_edit')?>/"+data.id;
+            })
+        });
     </script>
 <?= $this->endSection() ?>
 
@@ -100,5 +144,6 @@
                 </tr>
             </thead>
         </table>
+        <button class="new-user-btn">Nuevo usuario</button>
     </div>   
 <?= $this->endSection() ?>

@@ -66,6 +66,7 @@
                     }
                 }
             })
+            
             $('#festivals_datatable tbody').on('click', '.deleteBtn', function () {
 
                 var data = festivalsDatatable.row($(this).parents('tr')).data();
@@ -95,9 +96,21 @@
                         error: (xhr, status, error) => {
                             alert('Se ha producido un error');
                         },
-                })
+                });
 
             });
+
+            //New festival
+            $('.new-festival-btn').click(function() {
+                window.location.href= "<?= route_to('festivals_view_edit')?>";
+            });
+
+            //Edit festival
+            $('#festivals_datatable tbody').on('click', '.editBtn', function () {
+                var data = festivalsDatatable.row($(this).parents('tr')).data();
+
+                window.location.href = "<?= route_to('festivals_view_edit')?>/"+data.id;
+            })
         });
 
         
@@ -120,5 +133,6 @@
                 </tr>
             </thead>
         </table>
+        <button class="new-festival-btn">Nuevo festival</button>
     </div>   
 <?= $this->endSection() ?>

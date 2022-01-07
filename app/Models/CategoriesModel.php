@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Entities\Categories;
 use CodeIgniter\Model;
+use Exception;
 
 class CategoriesModel extends Model
 {
@@ -43,7 +44,7 @@ class CategoriesModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function findCategories($id) {
+    public function findCategories($id=null) {
         if (is_null($id)) {
             return $this->findAll();
         }
@@ -55,5 +56,15 @@ class CategoriesModel extends Model
     public function findCategoriesDatatable($limitStart, $limitLenght) {
         return $this->limit($limitLenght, $limitStart)
                     ->find();
+    }
+
+    public function deleteCategory($id) {
+        try {
+            $this->where('id', $id)
+                 ->delete();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 }

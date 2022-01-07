@@ -49,7 +49,6 @@ if (!defined('API_REST_NAMESPACE')) {
 //$routes->get('/', 'LoginController::index',['as' => 'login', 'filter' => 'login_auth', 'namespace' => PUBLICSECTION_NAMESPACE]);
 
 //-------- Normal routes ------------------------
-
 $routes->group('', function ($routes) {
     $routes->get('/', 'LoginController::index', ['as' => 'login', 'filter' => 'login_auth', 'namespace' => PUBLIC_SECTION_NAMESPACE]);
     $routes->get('home', 'HomeController::index', ['as' => 'home_public', 'filter' => 'public_auth', 'namespace' => PUBLIC_SECTION_NAMESPACE]);
@@ -63,7 +62,18 @@ $routes->group('admin', function ($routes) {
     $routes->get('roles', 'RolesController::index', ['as' => 'roles_admin', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
     $routes->get('config', 'ConfigController::index', ['as' => 'config_admin', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
 });
+//-----------------------------------------------
+//------------- Edit forms ----------------------
+$routes->get('festivals/view/edit', 'FestivalsController::viewEditFestival', ['as' => 'festivals_view_edit', 'namespace' => ADMIN_NAMESPACE]);
+$routes->get('festivals/view/edit/(:any)', 'FestivalsController::viewEditFestival/$1', ['namespace' => ADMIN_NAMESPACE]);
 
+$routes->get('categories/view/edit', 'CategoriesController::viewEditCategory', ['as' => 'categories_view_edit', 'namespace' => ADMIN_NAMESPACE]);
+$routes->get('categories/view/edit/(:any)', 'CategoriesController::viewEditCategory/$1', ['namespace' => ADMIN_NAMESPACE]);
+//-----------------------------------------------
+//------------- Save forms ----------------------
+$routes->post('festivals', 'FestivalsController::saveFestival', ['as' => 'save_festival', 'namespace' => ADMIN_NAMESPACE]);
+$routes->post('categories', 'CategoriesController::saveCategory', ['as' => 'save_category', 'namespace' => ADMIN_NAMESPACE]);
+//-----------------------------------------------
 //----------- DataTable routes ------------------
 $routes->post('festivals_data', 'FestivalsController::getFestivalsData', ['as' => 'festivals_data', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
 $routes->post('roles_data', 'RolesController::getRolesData', ['as' => 'roles_data', 'filter' => 'private_auth', 'namespace' => ADMIN_NAMESPACE]);
@@ -73,6 +83,7 @@ $routes->post('users_data', 'UsersController::getUsersData', ['as' => 'users_dat
 
 //------------ CRUD admin -----------------------
 $routes->delete('delete_festival', 'FestivalsController::deleteFestival', ['as' => 'delete_festival', 'namespace' => ADMIN_NAMESPACE]);
+$routes->delete('delete_category', 'CategoriesController::deleteCategory', ['as' => 'delete_category', 'namespace' => ADMIN_NAMESPACE]);
 //-----------------------------------------------
 
 //------------ Check Login ----------------------

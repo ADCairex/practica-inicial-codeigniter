@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
+use DateTime;
 
 class Festivals extends Entity
 {
@@ -24,4 +25,9 @@ class Festivals extends Entity
         'deleted_at'
     ];
     protected $casts   = [];
+
+    public function getInputFormatDate() {
+        $newDate = date_create($this->date);
+        return date_format($newDate, 'Y-m-d');
+    }
 }

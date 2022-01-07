@@ -27,12 +27,12 @@
                 {
                     "targets": 2,
                     "render": function (data, type, row, meta) {
-                        return '<button class="btn"><i class="fa fa-trash"></i></button> <button class="btn"><i class="fa fa-edit"></i></button>';
+                        return '<button class="btn deleteBtn"><i class="fa fa-trash"></i></button> <button class="btn editBtn"><i class="fa fa-edit"></i></button>';
                     }
                 }
             ]
 
-            let festivalsDatatable = $('#categories_datatable').DataTable({
+            let categoriesDatatable = $('#categories_datatable').DataTable({
                 "processing": true, //Para mostrar el loading
                 "responsive": true,
                 "serverSide": true, //Activar Ajax
@@ -54,6 +54,51 @@
                     }
                 }
             })
+
+            $('#categories_datatable tbody').on('click', '.deleteBtn', function () {
+
+                var data = categoriesDatatable.row($(this).parents('tr')).data();
+                console.log(data.id);
+
+                let json_data = {
+                    "id": data.id
+                };
+
+                $.ajax({
+                    url: "<?= route_to('delete_category') ?>",
+                        type: 'DELETE',
+                        data: JSON.stringify(json_data),
+                        processData: false,
+                        contentType: false,
+                        async: true,
+                        timeout: 10000,
+                        dataType: 'json',
+                        beforeSend: (xhr) => {},
+                        success: (response) => {
+                            if (response.status == 'OK') {
+                                $("#categories_datatable").DataTable().ajax.reload(null, false);
+                            } else {
+                                alert('Se ha producido un error');
+                            }
+                        },
+                        error: (xhr, status, error) => {
+                            alert('Se ha producido un error');
+                        },
+                });
+
+            });
+
+            //New category
+            $('.new-category-btn').click(function() {
+                window.location.href= "<?= route_to('categories_view_edit')?>";
+            });
+
+            //Edit category
+            $('#categories_datatable tbody').on('click', '.editBtn', function () {
+                var data = categoriesDatatable.row($(this).parents('tr')).data();
+
+                window.location.href = "<?= route_to('categories_view_edit')?>/"+data.id;
+            })
         });
 
     </script>
@@ -72,5 +117,6 @@
                 </tr>
             </thead>
         </table>
+        <button class="new-category-btn">Nueva categoria</button>
     </div>   
 <?= $this->endSection() ?>
